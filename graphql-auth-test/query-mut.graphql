@@ -1,0 +1,52 @@
+# mutation {
+#    createUser(username: "Munguu",password:"password", email:"email@email.com")
+#   {
+#     user
+#     {
+#       username
+#       email
+#     }
+#   }
+# }
+
+
+ {
+   allUsers{
+     edges{
+       node
+       {
+         username
+       }
+     }
+   }
+ }
+
+ mutation{
+ 	auth(password:"password", username:"Munguu"){
+     accessToken
+     refreshToken
+    
+   }
+ }
+
+mutation{
+  protectedCreateStore(userId:2,
+  name:"furiture1",
+    token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNjEyODM3MzYzLCJuYmYiOjE2MTI4MzczNjMsImp0aSI6ImY1MDAyMWE0LWRkNzEtNDFlYS05NjgzLTc4ZjMwMzc5OGM2ZCIsImlkZW50aXR5IjoiTXVuZ3V1IiwiZXhwIjoxNjEyODM4MjYzfQ.pU3qLzP-kUedV1tN1Ml02AM0OIhUL_V_OXswXz-XjI4"
+    
+  ){
+    store{
+      __typename
+      ... on StoreObject{
+        name
+        userId
+      }
+     __typename
+      ... on AuthInfoField{
+        message
+      }
+      
+      
+    }
+  }
+}%  
